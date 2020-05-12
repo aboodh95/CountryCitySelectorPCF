@@ -19,6 +19,7 @@ export interface ICountryCityProps {
   selectedCity: string;
   CountryLabel: string;
   CityLabel: string;
+  isControlDisabled: boolean;
 }
 
 export interface ICountryCityState {
@@ -104,6 +105,7 @@ export class CountryCity extends React.Component<
               </Stack.Item>
               <Stack.Item grow>
                 <ComboBox
+                  disabled={this.props.isControlDisabled}
                   defaultSelectedKey={this.props.selectedCountry}
                   placeholder="Country"
                   allowFreeform
@@ -150,6 +152,7 @@ export class CountryCity extends React.Component<
               </Stack.Item>
               <Stack.Item grow>
                 <ComboBox
+                  disabled={this.props.isControlDisabled}
                   allowFreeform
                   defaultSelectedKey={this.props.selectedCity}
                   autoComplete="on"

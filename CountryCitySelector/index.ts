@@ -48,15 +48,14 @@ export class CountryCitySelector
    * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to names defined in the manifest, as well as utility functions
    */
   public updateView(context: ComponentFramework.Context<IInputs>): void {
-    console.log(context.parameters.Country?.raw);
     var props = {
       updateCountryAndCity: this.updateCountryAndCity.bind(this),
       selectedCity: context.parameters.City?.raw,
       selectedCountry: context.parameters.Country?.raw,
       CityLabel: context.parameters.City?.attributes?.DisplayName,
       CountryLabel: context.parameters.Country?.attributes?.DisplayName,
+      isControlDisabled: context.mode.isControlDisabled,
     } as ICountryCityProps;
-
     ReactDOM.render(React.createElement(CountryCity, props), this.container);
   }
 
@@ -75,9 +74,7 @@ export class CountryCitySelector
    * Called when the control is to be removed from the DOM tree. Controls should use this call for cleanup.
    * i.e. cancelling any pending remote calls, removing listeners, etc.
    */
-  public destroy(): void {
-    // Add code to cleanup control if necessary
-  }
+  public destroy(): void {}
 
   public updateCountryAndCity(country: string, city: string) {
     this.Country = country;
